@@ -36,6 +36,18 @@ feign:
     jackson:
       enabled: true
 
+springdoc:
+  version: '@project.version@'
+  api-docs:
+    path: /api-docs
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+  swagger-ui:
+    path: /swagger-ui.html
+    disable-swagger-default-url: true
+  paths-to-match:
+    - /api/v*/**
+
 api:
   kakao:
     token: KakaoAK 7eff070894cdffd690c14c851e2e23ee
