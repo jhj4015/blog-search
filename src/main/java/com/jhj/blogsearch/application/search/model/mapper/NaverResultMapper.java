@@ -1,4 +1,4 @@
-package com.jhj.blogsearch.application.search.mapper;
+package com.jhj.blogsearch.application.search.model.mapper;
 
 import com.jhj.blogsearch.api.dto.SearchResultDTO;
 import com.jhj.blogsearch.application.search.client.dto.NaverResponseDTO;
@@ -13,6 +13,7 @@ public class NaverResultMapper implements SearchResultMapper<NaverResponseDTO> {
                 .totalCount(responseDTO.getTotal())
                 .pageableCount(responseDTO.getStart())
                 .apiName("NAVER-BLOG")
+                .isEnd(false)       // @ todo, naver api는 다음 페이지 여부 리턴 값이 없음, 개선 필요
                 .documents(getDocuments(responseDTO))
                 .build();
     }

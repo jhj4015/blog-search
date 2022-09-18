@@ -6,13 +6,11 @@ import com.jhj.blogsearch.application.search.client.KakaoFeignClient;
 import com.jhj.blogsearch.application.search.client.NaverFeignClient;
 import com.jhj.blogsearch.application.search.client.dto.KakaoResponseDTO;
 import com.jhj.blogsearch.application.search.client.dto.NaverResponseDTO;
-import com.jhj.blogsearch.application.search.mapper.KakaoResultMapper;
-import com.jhj.blogsearch.application.search.mapper.NaverResultMapper;
-import com.jhj.blogsearch.application.search.mapper.SearchResultMapper;
+import com.jhj.blogsearch.application.search.model.SearchResultPage;
+import com.jhj.blogsearch.application.search.model.mapper.KakaoResultMapper;
+import com.jhj.blogsearch.application.search.model.mapper.NaverResultMapper;
+import com.jhj.blogsearch.application.search.model.mapper.SearchResultMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,28 +20,29 @@ public class BlogSearchService {
     private final KakaoFeignClient kakaoFeignClient;
     private final NaverFeignClient naverFeignClient;
 
-    public Page<SearchResultDTO> searchBlog(SearchRequestDTO request, Pageable pageable) {
-        SearchResultDTO searchResultDTO = searchKakaoBlog(request, pageable.getPageNumber(),
-                pageable.getPageSize());
+    public SearchResultPage searchBlog(SearchRequestDTO request) {
+        SearchResultDTO searchResultDTO = searchKakaoBlog(request);
 
-        return new PageImpl(searchResultDTO.getDocuments(),
-                pageable,
-                searchResultDTO.getTotalCount());
+        return SearchResultPage.builder()
+                .apiName(searchResultDTO.getApiName())
+                .apiSort(request.getSort())
+                .isEnd(searchResultDTO.isEnd())
+                .content(searchResultDTO.getDocuments())
+                .pageNumber(searchResultDTO.getPageableCount())
+                .pageSize(request.getPageSize())
+                .total(searchResultDTO.getTotalCount())
+                .build();
     }
 
-    private SearchResultDTO searchKakaoBlog(SearchRequestDTO request, int pageNumber, int pageSize) {
-        KakaoResponseDTO responseDTO = kakaoFeignClient.getBlogResult(request, pageNumber,
-                pageSize);
+    SearchResultDTO searchKakaoBlog(SearchRequestDTO request) {
+        KakaoResponseDTO responseDTO = kakaoFeignClient.getBlogResult(request);
         SearchResultMapper<KakaoResponseDTO> searchResultMapper = new KakaoResultMapper();
         return searchResultMapper.mapper(responseDTO);
     }
 
-    public SearchResultDTO searchNaverBlog(SearchRequestDTO request, int pageNumber, int pageSize) {
-        NaverResponseDTO responseDTO = naverFeignClient.getBlogResult(request, pageNumber,
-                pageSize);
+    SearchResultDTO searchNaverBlog(SearchRequestDTO request) {
+        NaverResponseDTO responseDTO = naverFeignClient.getBlogResult(request);
         SearchResultMapper<NaverResponseDTO> searchResultMapper = new NaverResultMapper();
         return searchResultMapper.mapper(responseDTO);
     }
-
-
 }

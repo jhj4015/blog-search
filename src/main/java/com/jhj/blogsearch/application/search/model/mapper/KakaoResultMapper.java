@@ -1,4 +1,4 @@
-package com.jhj.blogsearch.application.search.mapper;
+package com.jhj.blogsearch.application.search.model.mapper;
 
 import com.jhj.blogsearch.api.dto.SearchResultDTO;
 import com.jhj.blogsearch.application.search.client.dto.KakaoResponseDTO;
@@ -13,6 +13,7 @@ public class KakaoResultMapper implements SearchResultMapper<KakaoResponseDTO> {
                 .totalCount(responseDTO.getMeta().getTotalCount())
                 .pageableCount(responseDTO.getMeta().getPageableCount())
                 .apiName("KAKAO-BLOG")
+                .isEnd(responseDTO.getMeta().isEnd())
                 .documents(getDocuments(responseDTO))
                 .build();
     }

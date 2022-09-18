@@ -1,4 +1,4 @@
-package com.jhj.blogsearch.application.search.mapper;
+package com.jhj.blogsearch.application.search.model.mapper;
 
 import com.jhj.blogsearch.api.dto.SearchResultDTO;
 

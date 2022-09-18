@@ -13,6 +13,7 @@ public class SearchResultDTO {
     private final int totalCount;
     private final int pageableCount;
     private final String apiName;
+    private final boolean isEnd;
 
     private final List<Document> documents;
 

@@ -7,11 +7,9 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * ref )
- * https://developers.naver.com/docs/serviceapi/search/blog/blog.md#%EB%B8%94%EB%A1%9C%EA%B7%B8
+ * ref ) https://developers.naver.com/docs/serviceapi/search/blog/blog.md#%EB%B8%94%EB%A1%9C%EA%B7%B8
  */
 
 @FeignClient(name = "naverClient", url = "https://openapi.naver.com", configuration = NaverFeignConfig.class)
@@ -19,8 +17,6 @@ public interface NaverFeignClient {
 
     @GetMapping(path = "/v1/search/blog", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     NaverResponseDTO getBlogResult(
-            @SpringQueryMap SearchRequestDTO searchRequestDTO,
-            @RequestParam(name = "page", defaultValue = "1") int page,
-            @RequestParam(name = "size", defaultValue = "10") int size);
+            @SpringQueryMap SearchRequestDTO searchRequestDTO);
 
 }

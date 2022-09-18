@@ -7,11 +7,9 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * ref )
- * https://developers.kakao.com/docs/latest/ko/daum-search/dev-guide
+ * ref ) https://developers.kakao.com/docs/latest/ko/daum-search/dev-guide
  */
 
 @FeignClient(name = "kakaoClient", url = "https://dapi.kakao.com", configuration = KakaoFeignConfig.class)
@@ -19,7 +17,5 @@ public interface KakaoFeignClient {
 
     @GetMapping(path = "/v2/search/blog", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     KakaoResponseDTO getBlogResult(
-            @SpringQueryMap SearchRequestDTO searchRequestDTO,
-            @RequestParam(name = "page", defaultValue = "1") int page,
-            @RequestParam(name = "size", defaultValue = "10") int size);
+            @SpringQueryMap SearchRequestDTO searchRequestDTO);
 }
