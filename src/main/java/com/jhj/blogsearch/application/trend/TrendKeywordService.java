@@ -34,6 +34,7 @@ public class TrendKeywordService {
                 .map(t -> TrendKeywordResultDTO.of(t.getKeyword(), t.getCount())).collect(toList());
     }
 
+    // @todo, redis 서버가 죽는 것을 대비해 10분 간격으로 DB 저장 스케줄링
     public void backupTrendKeywordAndCount() {
         List<TrendKeywordResultDTO> redisTop10Keywords = redisTrendKeywordRepository.findTop10ByOrderByCountDesc();
         List<TrendKeyword> list = redisTop10Keywords.stream()

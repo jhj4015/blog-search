@@ -10,6 +10,7 @@ import com.jhj.blogsearch.application.search.model.SearchResultPage;
 import com.jhj.blogsearch.application.search.model.mapper.KakaoResultMapper;
 import com.jhj.blogsearch.application.search.model.mapper.NaverResultMapper;
 import com.jhj.blogsearch.application.search.model.mapper.SearchResultMapper;
+import com.jhj.blogsearch.application.trend.TrendKeywordService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,9 +20,11 @@ public class BlogSearchService {
 
     private final KakaoFeignClient kakaoFeignClient;
     private final NaverFeignClient naverFeignClient;
+    private final TrendKeywordService trendKeywordService;
 
     public SearchResultPage searchBlog(SearchRequestDTO request) {
         SearchResultDTO searchResultDTO = searchKakaoBlog(request);
+        trendKeywordService.updateCountByKeyword(request.getQuery());
 
         return SearchResultPage.builder()
                 .apiName(searchResultDTO.getApiName())
