@@ -25,3 +25,7 @@ feign:
 api:
   kakao:
     token: KakaoAK 7eff070894cdffd690c14c851e2e23ee
+  naver:
+    client:
+      id: noK72Z9zRlNRMzAsmYy8
+      secret: ZB36YxIzl2

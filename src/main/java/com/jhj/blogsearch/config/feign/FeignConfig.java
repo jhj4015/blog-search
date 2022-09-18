@@ -1,4 +1,4 @@
-package com.jhj.blogsearch.config;
+package com.jhj.blogsearch.config.feign;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

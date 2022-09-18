@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.http.HttpStatus;
 
-
 @Getter
 @Builder
 public class ApiResponse<T> {
