@@ -27,12 +27,14 @@ Blog Search Service
 ## Table Structure
 1. 인기검색어 테이블
 ```sql
+
 CREATE TABLE TREND_KEYWORD (
-   KEYWORD VARCHAR(255) NOT NULL,
-   COUNT BIGINT,
-   CREATED_AT DATE,
-   PRIMARY KEY (KEYWORD)
+   KEYWORD      VARCHAR(255) NOT NULL,
+   COUNT        BIGINT,
+   CREATED_AT   TIMESTAMP,
+   PRIMARY KEY  (KEYWORD)
 )
+
 ```
 
 
@@ -72,7 +74,6 @@ CREATE TABLE TREND_KEYWORD (
     4. [X] 추후 카카오 API 이외에 새로운 검색 소스가 추가될 수 있음을 고려해야 한다.
     5. [ ] 장애가 발생한 경우, 네이버 블로그 검색 API를 통해 데이터 제공한다.
         1. Circuit breaker 패턴 이용
-            1. 구동방식 이해
         2. 카카오 장애가 나서 네이버로 넘어갔으나 다시 카카오가 회복되면서 카카오로 호출시 데이터 정합성이 떨어지는 것에 대한 대비 방안 고려
             1. API 요청값과 응답값에 카카오 혹은 네이버 플레그값을 추가
 2. [ ] 인기 검색어
