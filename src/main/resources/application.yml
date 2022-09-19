@@ -53,6 +53,9 @@ springdoc:
     disable-swagger-default-url: true
   paths-to-match:
     - /api/v*/**
+  terms-of-service: 'http://swagger.io/terms/'
+  name: 'jhj4015'
+  email: 'i.m.ready0366@gmail.com'
 
 api:
   kakao:

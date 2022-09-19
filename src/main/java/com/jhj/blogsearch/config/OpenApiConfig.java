@@ -11,16 +11,23 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class OpenApiConfig {
 
+    @Value("${springdoc.terms-of-service}")
+    private String termsOfService;
+    @Value("${springdoc.name}")
+    private String name;
+    @Value("${springdoc.email}")
+    private String email;
+
     @Bean
     public OpenAPI openAPI(@Value("${springdoc.version}") String appVersion) {
         Info info = new Info()
                 .title("Blog Search Service API")
                 .version(appVersion)
                 .description("Blog Search Service")
-                .termsOfService("http://swagger.io/terms/")
+                .termsOfService(termsOfService)
                 .contact(new Contact()
-                        .name("jhj4015")
-                        .email("i.m.ready0366@gmail.com"));
+                        .name(name)
+                        .email(email));
 
         return new OpenAPI()
                 .components(new Components())
