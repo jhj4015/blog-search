@@ -1,16 +1,26 @@
 package com.jhj.blogsearch.application.search.feign.dto;
 
 import java.util.List;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.NoArgsConstructor;
 
 @Getter
+@AllArgsConstructor(staticName = "of")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class KakaoDTO {
 
     private Meta meta;
     private List<Document> documents;
+    private boolean isFallBack = false;
 
     @Getter
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class Meta {
         @JsonProperty("total_count")
         private int totalCount;
@@ -21,6 +31,9 @@ public class KakaoDTO {
     }
 
     @Getter
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class Document {
         private String title;
         private String contents;

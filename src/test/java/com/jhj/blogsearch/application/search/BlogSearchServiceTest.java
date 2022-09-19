@@ -7,7 +7,6 @@ import com.jhj.blogsearch.api.dto.SearchDTO;
 import com.jhj.blogsearch.application.search.feign.KakaoFeignClient;
 import com.jhj.blogsearch.application.search.feign.NaverFeignClient;
 import com.jhj.blogsearch.application.search.feign.dto.KakaoDTO;
-import com.jhj.blogsearch.application.search.feign.dto.NaverDTO;
 import com.jhj.blogsearch.support.DummyDataReader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,11 +28,11 @@ class BlogSearchServiceTest {
 
     private DummyDataReader dummyDataReader;
     private final SearchDTO.Req searchReqDTO = SearchDTO.Req.builder()
-                                                            .query("hello-kakao")
-                                                            .sort("ACCURACY")
-                                                            .pageNumber(1)
-                                                            .pageSize(5)
-                                                            .build();
+                                                .query("hello-kakao")
+                                                .sort("ACCURACY")
+                                                .pageNumber(1)
+                                                .pageSize(5)
+                                                .build();
 
 
     @BeforeEach
@@ -55,21 +54,4 @@ class BlogSearchServiceTest {
         assertEquals(794, searchResDTO.getPageableCount());
         assertEquals("랄라라", searchResDTO.getDocuments().get(1).getBlogName());
     }
-
-
-    @Test
-    void testNaverBlogSearchResult() {
-        // given
-        NaverDTO naverDTO = dummyDataReader.readNaverDummyResponse();
-        given(naverFeignClient.getBlogResult(searchReqDTO)).willReturn(naverDTO);
-
-        // when
-        SearchDTO.Res searchResDTO = blogSearchService.searchNaverBlog(searchReqDTO);
-
-        // then
-        assertEquals(24645, searchResDTO.getTotalCount());
-        assertEquals(1, searchResDTO.getPageableCount());
-        assertEquals("코딩일기", searchResDTO.getDocuments().get(3).getBlogName());
-    }
-
 }

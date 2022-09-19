@@ -2,19 +2,43 @@ package com.jhj.blogsearch.application.search.feign;
 
 import com.jhj.blogsearch.api.dto.SearchDTO;
 import com.jhj.blogsearch.application.search.feign.dto.KakaoDTO;
+import com.jhj.blogsearch.application.search.feign.dto.NaverDTO;
+import com.jhj.blogsearch.application.search.feign.dto.SearchTransfer;
 import com.jhj.blogsearch.config.feign.KakaoFeignConfig;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * ref ) https://developers.kakao.com/docs/latest/ko/daum-search/dev-guide
  */
 
-@FeignClient(name = "kakaoClient", url = "https://dapi.kakao.com", configuration = KakaoFeignConfig.class)
+@FeignClient(name = "kakaoClient", url = "https://dapi.kakao.com", configuration = KakaoFeignConfig.class, fallbackFactory = KakaoFeignClient.KaKaoClientFallbackFactory.class)
 public interface KakaoFeignClient {
 
     @GetMapping(path = "/v2/search/blog", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    KakaoDTO getBlogResult(@SpringQueryMap SearchDTO.Req req);
+    KakaoDTO getBlogResult(@SpringQueryMap SearchDTO.Req request);
+
+    @Slf4j
+    @RequiredArgsConstructor
+    @Component
+    class KaKaoClientFallbackFactory implements FallbackFactory<KakaoFeignClient> {
+
+        private final NaverFeignClient naverFeignClient;
+        private final SearchTransfer responseConverter;
+
+        @Override
+        public KakaoFeignClient create(Throwable cause) {
+            return request -> {
+                log.warn("Fallback : KakaoFeignClient.getBlogResult() called", cause);
+                NaverDTO naverDTO = naverFeignClient.getBlogResult(request);
+                return responseConverter.naverResToKakaoRes(naverDTO);
+            };
+        }
+    }
 }
