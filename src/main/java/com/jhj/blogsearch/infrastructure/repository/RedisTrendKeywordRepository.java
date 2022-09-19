@@ -26,8 +26,7 @@ public class RedisTrendKeywordRepository {
     public List<TrendKeywordDTO> findTop10ByOrderByCountDesc() {
 
         ZSetOperations<String, String> zSet = redisTemplate.opsForZSet();
-        Set<TypedTuple<String>> tuples = zSet.reverseRangeWithScores("keyword", 0,
-                9);  //count 순 10개, 0 ~ 9
+        Set<TypedTuple<String>> tuples = zSet.reverseRangeWithScores("keyword", 0, 9);
 
         if (Objects.isNull(tuples)) {
             return Collections.emptyList();
