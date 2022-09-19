@@ -5,7 +5,7 @@ import com.jhj.blogsearch.application.search.client.dto.NaverResponseDTO;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class NaverResultMapper implements SearchResultMapper<NaverResponseDTO> {
+public class NaverResponseMapper implements SearchResponseMapper<NaverResponseDTO> {
 
     @Override
     public SearchResultDTO mapper(NaverResponseDTO responseDTO) {

@@ -5,7 +5,7 @@ import com.jhj.blogsearch.application.search.client.dto.KakaoResponseDTO;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class KakaoResultMapper implements SearchResultMapper<KakaoResponseDTO> {
+public class KakaoResponseMapper implements SearchResponseMapper<KakaoResponseDTO> {
 
     @Override
     public SearchResultDTO mapper(KakaoResponseDTO responseDTO) {

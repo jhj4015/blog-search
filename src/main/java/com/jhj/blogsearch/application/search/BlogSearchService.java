@@ -6,10 +6,10 @@ import com.jhj.blogsearch.application.search.client.KakaoFeignClient;
 import com.jhj.blogsearch.application.search.client.NaverFeignClient;
 import com.jhj.blogsearch.application.search.client.dto.KakaoResponseDTO;
 import com.jhj.blogsearch.application.search.client.dto.NaverResponseDTO;
-import com.jhj.blogsearch.application.search.model.SearchResultPage;
-import com.jhj.blogsearch.application.search.model.mapper.KakaoResultMapper;
-import com.jhj.blogsearch.application.search.model.mapper.NaverResultMapper;
-import com.jhj.blogsearch.application.search.model.mapper.SearchResultMapper;
+import com.jhj.blogsearch.application.search.model.SearchResponsePage;
+import com.jhj.blogsearch.application.search.model.mapper.KakaoResponseMapper;
+import com.jhj.blogsearch.application.search.model.mapper.NaverResponseMapper;
+import com.jhj.blogsearch.application.search.model.mapper.SearchResponseMapper;
 import com.jhj.blogsearch.application.trend.TrendKeywordService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,11 +22,11 @@ public class BlogSearchService {
     private final NaverFeignClient naverFeignClient;
     private final TrendKeywordService trendKeywordService;
 
-    public SearchResultPage searchBlog(SearchRequestDTO request) {
+    public SearchResponsePage searchBlog(SearchRequestDTO request) {
         SearchResultDTO searchResultDTO = searchKakaoBlog(request);
         trendKeywordService.updateCountByKeyword(request.getQuery());
 
-        return SearchResultPage.builder()
+        return SearchResponsePage.builder()
                 .apiName(searchResultDTO.getApiName())
                 .apiSort(request.getSort())
                 .isEnd(searchResultDTO.isEnd())
@@ -39,13 +39,13 @@ public class BlogSearchService {
 
     SearchResultDTO searchKakaoBlog(SearchRequestDTO request) {
         KakaoResponseDTO responseDTO = kakaoFeignClient.getBlogResult(request);
-        SearchResultMapper<KakaoResponseDTO> searchResultMapper = new KakaoResultMapper();
-        return searchResultMapper.mapper(responseDTO);
+        SearchResponseMapper<KakaoResponseDTO> searchResponseMapper = new KakaoResponseMapper();
+        return searchResponseMapper.mapper(responseDTO);
     }
 
     SearchResultDTO searchNaverBlog(SearchRequestDTO request) {
         NaverResponseDTO responseDTO = naverFeignClient.getBlogResult(request);
-        SearchResultMapper<NaverResponseDTO> searchResultMapper = new NaverResultMapper();
-        return searchResultMapper.mapper(responseDTO);
+        SearchResponseMapper<NaverResponseDTO> searchResponseMapper = new NaverResponseMapper();
+        return searchResponseMapper.mapper(responseDTO);
     }
 }
