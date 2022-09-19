@@ -32,9 +32,15 @@ spring:
     port: 6379
 
 feign:
+  circuitbreaker:
+    enabled: true
   autoconfiguration:
     jackson:
       enabled: true
+  client:
+    config:
+      default:
+        loggerLevel: FULL
 
 springdoc:
   version: '@project.version@'

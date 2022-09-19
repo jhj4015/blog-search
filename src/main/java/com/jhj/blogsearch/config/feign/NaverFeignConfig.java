@@ -1,6 +1,7 @@
 package com.jhj.blogsearch.config.feign;
 
 import feign.RequestInterceptor;
+import feign.Retryer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 
@@ -17,4 +18,8 @@ public class NaverFeignConfig {
         };
     }
 
+    @Bean
+    public Retryer retryer() {
+        return new Retryer.Default(1000, 2000, 3);
+    }
 }
