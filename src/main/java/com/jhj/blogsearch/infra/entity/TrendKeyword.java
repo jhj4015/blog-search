@@ -1,4 +1,4 @@
-package com.jhj.blogsearch.infrastructure.entity;
+package com.jhj.blogsearch.infra.entity;
 
 import java.time.LocalDateTime;
 import javax.persistence.Entity;

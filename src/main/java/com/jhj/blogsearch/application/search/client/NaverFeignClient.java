@@ -1,8 +1,7 @@
-package com.jhj.blogsearch.application.search.feign;
+package com.jhj.blogsearch.application.search.client;
 
 import com.jhj.blogsearch.api.dto.SearchDTO;
-import com.jhj.blogsearch.api.dto.SearchDTO.Req;
-import com.jhj.blogsearch.application.search.feign.dto.NaverDTO;
+import com.jhj.blogsearch.application.search.client.dto.NaverDTO;
 import com.jhj.blogsearch.config.feign.NaverFeignConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.openfeign.FallbackFactory;

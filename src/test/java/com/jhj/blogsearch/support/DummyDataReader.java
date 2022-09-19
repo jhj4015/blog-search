@@ -1,8 +1,8 @@
 package com.jhj.blogsearch.support;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jhj.blogsearch.application.search.feign.dto.KakaoDTO;
-import com.jhj.blogsearch.application.search.feign.dto.NaverDTO;
+import com.jhj.blogsearch.application.search.client.dto.KakaoDTO;
+import com.jhj.blogsearch.application.search.client.dto.NaverDTO;
 import java.io.InputStream;
 
 

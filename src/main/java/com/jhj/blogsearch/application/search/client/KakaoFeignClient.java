@@ -1,9 +1,9 @@
-package com.jhj.blogsearch.application.search.feign;
+package com.jhj.blogsearch.application.search.client;
 
 import com.jhj.blogsearch.api.dto.SearchDTO;
-import com.jhj.blogsearch.application.search.feign.dto.KakaoDTO;
-import com.jhj.blogsearch.application.search.feign.dto.NaverDTO;
-import com.jhj.blogsearch.application.search.feign.dto.SearchTransfer;
+import com.jhj.blogsearch.application.search.client.dto.KakaoDTO;
+import com.jhj.blogsearch.application.search.client.dto.NaverDTO;
+import com.jhj.blogsearch.application.search.client.dto.SearchTransfer;
 import com.jhj.blogsearch.config.feign.KakaoFeignConfig;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -3,9 +3,9 @@ package com.jhj.blogsearch.application.trend;
 import static java.util.stream.Collectors.toList;
 
 import com.jhj.blogsearch.api.dto.TrendKeywordDTO;
-import com.jhj.blogsearch.infrastructure.entity.TrendKeyword;
-import com.jhj.blogsearch.infrastructure.repository.RedisTrendKeywordRepository;
-import com.jhj.blogsearch.infrastructure.repository.TrendKeywordRepository;
+import com.jhj.blogsearch.infra.entity.TrendKeyword;
+import com.jhj.blogsearch.infra.repository.RedisTrendKeywordRepository;
+import com.jhj.blogsearch.infra.repository.TrendKeywordRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,7 +1,7 @@
-package com.jhj.blogsearch.application.search.feign.dto;
+package com.jhj.blogsearch.application.search.client.dto;
 
-import com.jhj.blogsearch.application.search.feign.dto.KakaoDTO.Document;
-import com.jhj.blogsearch.application.search.feign.dto.KakaoDTO.Meta;
+import com.jhj.blogsearch.application.search.client.dto.KakaoDTO.Document;
+import com.jhj.blogsearch.application.search.client.dto.KakaoDTO.Meta;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;

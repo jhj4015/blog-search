@@ -4,9 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
 
 import com.jhj.blogsearch.api.dto.SearchDTO;
-import com.jhj.blogsearch.application.search.feign.KakaoFeignClient;
-import com.jhj.blogsearch.application.search.feign.NaverFeignClient;
-import com.jhj.blogsearch.application.search.feign.dto.KakaoDTO;
+import com.jhj.blogsearch.api.dto.SortType;
+import com.jhj.blogsearch.application.search.client.KakaoFeignClient;
+import com.jhj.blogsearch.application.search.client.NaverFeignClient;
+import com.jhj.blogsearch.application.search.client.dto.KakaoDTO;
 import com.jhj.blogsearch.support.DummyDataReader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,7 +30,7 @@ class BlogSearchServiceTest {
     private DummyDataReader dummyDataReader;
     private final SearchDTO.Req searchReqDTO = SearchDTO.Req.builder()
                                                 .query("hello-kakao")
-                                                .sort("ACCURACY")
+                                                .sort(SortType.ACCURACY)
                                                 .pageNumber(1)
                                                 .pageSize(5)
                                                 .build();

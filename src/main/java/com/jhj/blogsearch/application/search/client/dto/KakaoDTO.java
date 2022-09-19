@@ -1,4 +1,4 @@
-package com.jhj.blogsearch.application.search.feign.dto;
+package com.jhj.blogsearch.application.search.client.dto;
 
 import java.util.List;
 import lombok.AccessLevel;

@@ -1,4 +1,4 @@
-package com.jhj.blogsearch.infrastructure.repository;
+package com.jhj.blogsearch.infra.repository;
 
 import static java.util.stream.Collectors.toList;
 
