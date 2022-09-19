@@ -1,7 +1,7 @@
-package com.jhj.blogsearch.application.search.client;
+package com.jhj.blogsearch.application.search.feign;
 
 import com.jhj.blogsearch.api.dto.SearchDTO;
-import com.jhj.blogsearch.application.search.client.dto.KakaoResponseDTO;
+import com.jhj.blogsearch.application.search.feign.dto.KakaoDTO;
 import com.jhj.blogsearch.config.feign.KakaoFeignConfig;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.SpringQueryMap;
@@ -16,6 +16,5 @@ import org.springframework.web.bind.annotation.GetMapping;
 public interface KakaoFeignClient {
 
     @GetMapping(path = "/v2/search/blog", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    KakaoResponseDTO getBlogResult(
-            @SpringQueryMap SearchDTO.Req req);
+    KakaoDTO getBlogResult(@SpringQueryMap SearchDTO.Req req);
 }

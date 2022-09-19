@@ -1,18 +1,17 @@
-package com.jhj.blogsearch.application.search.client.dto;
+package com.jhj.blogsearch.application.search.feign.dto;
 
 import java.util.List;
 import lombok.Getter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Getter
-public class KakaoResponseDTO {
+public class KakaoDTO {
 
     private Meta meta;
     private List<Document> documents;
 
     @Getter
     public static class Meta {
-
         @JsonProperty("total_count")
         private int totalCount;
         @JsonProperty("pageable_count")
@@ -23,7 +22,6 @@ public class KakaoResponseDTO {
 
     @Getter
     public static class Document {
-
         private String title;
         private String contents;
         private String url;

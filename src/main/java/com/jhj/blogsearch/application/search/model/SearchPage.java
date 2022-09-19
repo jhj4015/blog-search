@@ -9,16 +9,15 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 @Getter
-public class SearchResponsePage extends PageImpl<SearchDTO.Res.Document> {
+public class SearchPage extends PageImpl<SearchDTO.Res.Document> {
 
     private final String apiName;
     private final String apiSort;
     private final boolean isEnd;
 
     @Builder
-    public SearchResponsePage(String apiName, String apiSort, boolean isEnd, List<Document> content,
-            int pageNumber,
-            int pageSize, int total) {
+    public SearchPage(String apiName, String apiSort, boolean isEnd,
+                        List<Document> content, int pageNumber, int pageSize, int total) {
         super(content, PageRequest.of(pageNumber, pageSize), total);
         this.apiName = apiName;
         this.apiSort = apiSort;

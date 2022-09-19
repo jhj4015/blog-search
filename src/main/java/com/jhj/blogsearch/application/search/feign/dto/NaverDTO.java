@@ -1,11 +1,11 @@
-package com.jhj.blogsearch.application.search.client.dto;
+package com.jhj.blogsearch.application.search.feign.dto;
 
 import java.util.List;
 import lombok.Getter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Getter
-public class NaverResponseDTO {
+public class NaverDTO {
 
     private String lastBuildDate;
     private int total;
@@ -15,7 +15,6 @@ public class NaverResponseDTO {
 
     @Getter
     public static class Item {
-
         private String title;
         private String link;
         private String url;

@@ -16,13 +16,12 @@ public class SearchDTO {
     @Builder
     @AllArgsConstructor(staticName = "of")
     public static class Req {
-
         @NotNull
         private String query;
         private String sort;
         @Min(1)
         private int pageNumber;
-        @Min(30)
+        @Min(1)
         private int pageSize;
     }
 
@@ -30,18 +29,15 @@ public class SearchDTO {
     @Builder
     @RequiredArgsConstructor(staticName = "of")
     public static class Res {
-
         private final int totalCount;
         private final int pageableCount;
         private final String apiName;
         private final boolean isEnd;
-
-        private final List<com.jhj.blogsearch.api.dto.SearchDTO.Res.Document> documents;
+        private final List<Document> documents;
 
         @Getter
         @Builder
         public static class Document {
-
             private String title;
             private String contents;
             private String url;
@@ -49,7 +45,5 @@ public class SearchDTO {
             private String thumbNail;
             private String dateTime;
         }
-
     }
-
 }

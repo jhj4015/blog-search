@@ -28,7 +28,6 @@ public class TrendKeywordService {
             return redisTrendKeywordRepository.findTop10ByOrderByCountDesc();
         } catch (Exception e) {
             log.error("Failed, get the redis cache trend keyword, {}", e.getMessage());
-
         }
         return trendKeywordRepository.findTop10TrendKeywordByOrderByCountDesc().stream()
                 .map(t -> TrendKeywordDTO.of(t.getKeyword(), t.getCount())).collect(toList());

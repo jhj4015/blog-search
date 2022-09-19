@@ -7,7 +7,6 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Getter
@@ -18,7 +17,6 @@ public class TrendKeyword {
     @Id
     private String keyword;
     private Long count;
-    @CreationTimestamp
     private LocalDateTime createdAt;
 
     public static TrendKeyword of(String keyword, Long count) {

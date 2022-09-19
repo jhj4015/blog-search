@@ -1,7 +1,7 @@
-package com.jhj.blogsearch.application.search.client;
+package com.jhj.blogsearch.application.search.feign;
 
 import com.jhj.blogsearch.api.dto.SearchDTO;
-import com.jhj.blogsearch.application.search.client.dto.NaverResponseDTO;
+import com.jhj.blogsearch.application.search.feign.dto.NaverDTO;
 import com.jhj.blogsearch.config.feign.NaverFeignConfig;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.SpringQueryMap;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public interface NaverFeignClient {
 
     @GetMapping(path = "/v1/search/blog", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    NaverResponseDTO getBlogResult(
-            @SpringQueryMap SearchDTO.Req req);
+    NaverDTO getBlogResult(@SpringQueryMap SearchDTO.Req req);
 
 }
