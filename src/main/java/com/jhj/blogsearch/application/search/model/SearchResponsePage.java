@@ -1,7 +1,7 @@
 package com.jhj.blogsearch.application.search.model;
 
-import com.jhj.blogsearch.api.dto.SearchResultDTO;
-import com.jhj.blogsearch.api.dto.SearchResultDTO.Document;
+import com.jhj.blogsearch.api.dto.SearchDTO;
+import com.jhj.blogsearch.api.dto.SearchDTO.Res.Document;
 import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 @Getter
-public class SearchResponsePage extends PageImpl<SearchResultDTO.Document> {
+public class SearchResponsePage extends PageImpl<SearchDTO.Res.Document> {
 
     private final String apiName;
     private final String apiSort;

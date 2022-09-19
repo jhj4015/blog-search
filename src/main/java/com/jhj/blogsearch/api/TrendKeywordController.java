@@ -1,6 +1,6 @@
 package com.jhj.blogsearch.api;
 
-import com.jhj.blogsearch.api.dto.TrendKeywordResultDTO;
+import com.jhj.blogsearch.api.dto.TrendKeywordDTO;
 import com.jhj.blogsearch.application.trend.TrendKeywordService;
 import com.jhj.blogsearch.common.ApiResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -19,7 +19,7 @@ public class TrendKeywordController {
 
     @Operation(summary = "Trend Search API", description = "Get the Top 10 Trend Keyword")
     @GetMapping(value = "/rank")
-    public ApiResponse<List<TrendKeywordResultDTO>> searchRank() {
+    public ApiResponse<List<TrendKeywordDTO>> searchRank() {
         return ApiResponse.success(trendKeywordService.getTop10TrendKeywordsLookAside());
     }
 }

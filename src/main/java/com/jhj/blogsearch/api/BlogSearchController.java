@@ -1,6 +1,6 @@
 package com.jhj.blogsearch.api;
 
-import com.jhj.blogsearch.api.dto.SearchRequestDTO;
+import com.jhj.blogsearch.api.dto.SearchDTO;
 import com.jhj.blogsearch.application.search.BlogSearchService;
 import com.jhj.blogsearch.application.search.model.SearchResponsePage;
 import com.jhj.blogsearch.common.ApiResponse;
@@ -29,7 +29,8 @@ public class BlogSearchController {
             throw new IllegalArgumentException("검색어를 입력해주세요");
         }
 
-        SearchResponsePage searchResponsePage = blogSearchService.searchBlog(SearchRequestDTO.of(query, sort, page, size));
+        SearchResponsePage searchResponsePage =
+                blogSearchService.searchBlog(SearchDTO.Req.of(query, sort, page, size));
         return ApiResponse.success(searchResponsePage);
     }
 

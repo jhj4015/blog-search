@@ -2,7 +2,7 @@ package com.jhj.blogsearch.infrastructure.repository;
 
 import static java.util.stream.Collectors.toList;
 
-import com.jhj.blogsearch.api.dto.TrendKeywordResultDTO;
+import com.jhj.blogsearch.api.dto.TrendKeywordDTO;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -23,7 +23,7 @@ public class RedisTrendKeywordRepository {
         redisTemplate.opsForZSet().incrementScore("keyword", keyword, 1d);
     }
 
-    public List<TrendKeywordResultDTO> findTop10ByOrderByCountDesc() {
+    public List<TrendKeywordDTO> findTop10ByOrderByCountDesc() {
 
         ZSetOperations<String, String> zSet = redisTemplate.opsForZSet();
         Set<TypedTuple<String>> tuples = zSet.reverseRangeWithScores("keyword", 0,
@@ -33,7 +33,7 @@ public class RedisTrendKeywordRepository {
             return Collections.emptyList();
         }
         return tuples.stream()
-                .map(tuple -> TrendKeywordResultDTO.of(tuple.getValue(),
+                .map(tuple -> TrendKeywordDTO.of(tuple.getValue(),
                         Objects.requireNonNull(tuple.getScore()).longValue()))
                 .collect(toList());
     }

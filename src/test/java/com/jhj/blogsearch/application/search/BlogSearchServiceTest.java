@@ -3,8 +3,7 @@ package com.jhj.blogsearch.application.search;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
 
-import com.jhj.blogsearch.api.dto.SearchRequestDTO;
-import com.jhj.blogsearch.api.dto.SearchResultDTO;
+import com.jhj.blogsearch.api.dto.SearchDTO;
 import com.jhj.blogsearch.application.search.client.KakaoFeignClient;
 import com.jhj.blogsearch.application.search.client.NaverFeignClient;
 import com.jhj.blogsearch.application.search.client.dto.KakaoResponseDTO;
@@ -29,13 +28,13 @@ class BlogSearchServiceTest {
     private NaverFeignClient naverFeignClient;
 
     private DummyDataReader dummyDataReader;
-    private final SearchRequestDTO searchRequestDTO
-                                    = SearchRequestDTO.builder()
-                                    .query("hello-kakao")
-                                    .sort("ACCURACY")
-                                    .pageNumber(1)
-                                    .pageSize(5)
-                                    .build();
+    private final SearchDTO.Req searchRequestDTO
+                                                    = SearchDTO.Req.builder()
+                                                    .query("hello-kakao")
+                                                    .sort("ACCURACY")
+                                                    .pageNumber(1)
+                                                    .pageSize(5)
+                                                    .build();
 
 
     @BeforeEach
@@ -50,7 +49,7 @@ class BlogSearchServiceTest {
         given(kakaoFeignClient.getBlogResult(searchRequestDTO)).willReturn(kakaoResponseDTO);
 
         // when
-        SearchResultDTO searchResultDTO = blogSearchService.searchKakaoBlog(searchRequestDTO);
+        SearchDTO.Res searchResultDTO = blogSearchService.searchKakaoBlog(searchRequestDTO);
 
         // then
         assertEquals(22837, searchResultDTO.getTotalCount());
@@ -66,7 +65,7 @@ class BlogSearchServiceTest {
         given(naverFeignClient.getBlogResult(searchRequestDTO)).willReturn(naverResponseDTO);
 
         // when
-        SearchResultDTO searchResultDTO = blogSearchService.searchNaverBlog(searchRequestDTO);
+        SearchDTO.Res searchResultDTO = blogSearchService.searchNaverBlog(searchRequestDTO);
 
         // then
         assertEquals(24645, searchResultDTO.getTotalCount());

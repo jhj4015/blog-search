@@ -1,6 +1,6 @@
 package com.jhj.blogsearch.application.search.model.mapper;
 
-import com.jhj.blogsearch.api.dto.SearchResultDTO;
+import com.jhj.blogsearch.api.dto.SearchDTO;
 import com.jhj.blogsearch.application.search.client.dto.NaverResponseDTO;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 public class NaverResponseMapper implements SearchResponseMapper<NaverResponseDTO> {
 
     @Override
-    public SearchResultDTO mapper(NaverResponseDTO responseDTO) {
-        return SearchResultDTO.builder()
+    public SearchDTO.Res mapper(NaverResponseDTO responseDTO) {
+        return SearchDTO.Res.builder()
                 .totalCount(responseDTO.getTotal())
                 .pageableCount(responseDTO.getStart())
                 .apiName("NAVER-BLOG")
@@ -18,8 +18,8 @@ public class NaverResponseMapper implements SearchResponseMapper<NaverResponseDT
                 .build();
     }
 
-    private List<SearchResultDTO.Document> getDocuments(NaverResponseDTO responseDTO) {
-        return responseDTO.getItems().stream().map(item -> SearchResultDTO.Document.builder()
+    private List<SearchDTO.Res.Document> getDocuments(NaverResponseDTO responseDTO) {
+        return responseDTO.getItems().stream().map(item -> SearchDTO.Res.Document.builder()
                 .title(item.getTitle())
                 .contents(item.getDescription())
                 .url(item.getUrl())

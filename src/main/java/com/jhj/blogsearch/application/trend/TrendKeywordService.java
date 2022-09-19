@@ -2,7 +2,7 @@ package com.jhj.blogsearch.application.trend;
 
 import static java.util.stream.Collectors.toList;
 
-import com.jhj.blogsearch.api.dto.TrendKeywordResultDTO;
+import com.jhj.blogsearch.api.dto.TrendKeywordDTO;
 import com.jhj.blogsearch.infrastructure.entity.TrendKeyword;
 import com.jhj.blogsearch.infrastructure.repository.RedisTrendKeywordRepository;
 import com.jhj.blogsearch.infrastructure.repository.TrendKeywordRepository;
@@ -23,7 +23,7 @@ public class TrendKeywordService {
         redisTrendKeywordRepository.updateCountByKeyword(keyword);
     }
 
-    public List<TrendKeywordResultDTO> getTop10TrendKeywordsLookAside() {
+    public List<TrendKeywordDTO> getTop10TrendKeywordsLookAside() {
         try {
             return redisTrendKeywordRepository.findTop10ByOrderByCountDesc();
         } catch (Exception e) {
@@ -31,12 +31,12 @@ public class TrendKeywordService {
 
         }
         return trendKeywordRepository.findTop10TrendKeywordByOrderByCountDesc().stream()
-                .map(t -> TrendKeywordResultDTO.of(t.getKeyword(), t.getCount())).collect(toList());
+                .map(t -> TrendKeywordDTO.of(t.getKeyword(), t.getCount())).collect(toList());
     }
 
     // @todo, redis 서버가 죽는 것을 대비해 10분 간격으로 DB 저장 스케줄링
     public void backupTrendKeywordAndCount() {
-        List<TrendKeywordResultDTO> redisTop10Keywords = redisTrendKeywordRepository.findTop10ByOrderByCountDesc();
+        List<TrendKeywordDTO> redisTop10Keywords = redisTrendKeywordRepository.findTop10ByOrderByCountDesc();
         List<TrendKeyword> list = redisTop10Keywords.stream()
                 .map(t -> TrendKeyword.of(t.getKeyword(), t.getCount()))
                 .collect(toList());

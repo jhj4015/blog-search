@@ -1,7 +1,8 @@
 package com.jhj.blogsearch.application.search.model.mapper;
 
-import com.jhj.blogsearch.api.dto.SearchResultDTO;
+import com.jhj.blogsearch.api.dto.SearchDTO;
 
 public interface SearchResponseMapper<T> {
-    SearchResultDTO mapper(T responseDTO);
+
+    SearchDTO.Res mapper(T responseDTO);
 }
