@@ -24,9 +24,6 @@ class BlogSearchServiceTest {
     @Mock
     private KakaoFeignClient kakaoFeignClient;
 
-    @Mock
-    private NaverFeignClient naverFeignClient;
-
     private DummyDataReader dummyDataReader;
     private final SearchDTO.Req searchReqDTO = SearchDTO.Req.builder()
                                                 .query("hello-kakao")
