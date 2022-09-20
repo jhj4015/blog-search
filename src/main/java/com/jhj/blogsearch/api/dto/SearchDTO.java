@@ -3,11 +3,12 @@ package com.jhj.blogsearch.api.dto;
 import java.util.List;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import com.jhj.blogsearch.application.search.client.dto.SortType;
 
 public class SearchDTO {
 

@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
 
 import com.jhj.blogsearch.api.dto.SearchDTO;
-import com.jhj.blogsearch.api.dto.SortType;
+import com.jhj.blogsearch.application.search.client.dto.SortType;
 import com.jhj.blogsearch.application.search.client.KakaoFeignClient;
 import com.jhj.blogsearch.application.search.client.dto.KakaoDTO;
 import com.jhj.blogsearch.support.DummyDataReader;
@@ -40,8 +40,8 @@ class BlogSearchServiceTest {
     @Test
     void shouldGetKakaoBlogResponse() {
         // given
-        KakaoDTO kakaoDTO = dummyDataReader.readKakaoDummyResponse();
-        given(kakaoFeignClient.getBlogResult(searchReqDTO)).willReturn(kakaoDTO);
+        KakaoDTO.Res res = dummyDataReader.readKakaoDummyResponse();
+        given(kakaoFeignClient.getBlogResult(searchReqDTO)).willReturn(res);
 
         // when
         SearchDTO.Res searchResDTO = blogSearchService.searchKakaoBlog(searchReqDTO);

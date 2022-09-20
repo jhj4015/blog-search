@@ -1,10 +1,10 @@
 package com.jhj.blogsearch.application.search.client;
 
 import com.jhj.blogsearch.api.dto.SearchDTO;
-import com.jhj.blogsearch.api.dto.SortType;
+import com.jhj.blogsearch.application.search.client.dto.SortType;
 import com.jhj.blogsearch.application.search.client.dto.KakaoDTO;
 import com.jhj.blogsearch.application.search.client.dto.NaverDTO;
-import com.jhj.blogsearch.application.search.client.dto.SearchTransfer;
+import com.jhj.blogsearch.application.search.client.dto.SearchDTOTransfer;
 import com.jhj.blogsearch.config.feign.KakaoFeignConfig;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public interface KakaoFeignClient {
 
     @GetMapping(path = "/v2/search/blog", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    KakaoDTO getBlogResult(@SpringQueryMap SearchDTO.Req request);
+    KakaoDTO.Res getBlogResult(@SpringQueryMap SearchDTO.Req request);
 
     @Slf4j
     @RequiredArgsConstructor
@@ -31,15 +31,16 @@ public interface KakaoFeignClient {
     class KaKaoClientFallbackFactory implements FallbackFactory<KakaoFeignClient> {
 
         private final NaverFeignClient naverFeignClient;
-        private final SearchTransfer responseConverter;
+        private final SearchDTOTransfer transfer;
 
         @Override
         public KakaoFeignClient create(Throwable cause) {
             return request -> {
                 log.warn("Fallback : KakaoFeignClient.getBlogResult() called", cause);
                 SortType naverSortType = SortType.getNaverSortType(String.valueOf(request.getSort()));
-                NaverDTO naverDTO = naverFeignClient.getBlogResult(SearchDTO.Req.of(request.getQuery(), naverSortType, request.getPageNumber(), request.getPageSize()));
-                return responseConverter.naverResToKakaoRes(naverDTO);
+                NaverDTO.Res res = naverFeignClient.getBlogResult(SearchDTO.Req.of(request.getQuery(), naverSortType, request.getPageNumber(), request.getPageSize()));
+
+                return transfer.naverResToKakaoRes(res);
             };
         }
     }

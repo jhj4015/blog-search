@@ -34,8 +34,8 @@ public class BlogSearchService {
             }
 
     SearchDTO.Res searchKakaoBlog(SearchDTO.Req request) {
-        KakaoDTO responseDTO = kakaoFeignClient.getBlogResult(request);
-        SearchMapper<KakaoDTO> searchMapper = new KakaoSearchMapper();
-        return searchMapper.mapper(responseDTO);
+        KakaoDTO.Res res = kakaoFeignClient.getBlogResult(request);
+        SearchMapper<KakaoDTO.Res> searchMapper = new KakaoSearchMapper();
+        return searchMapper.mapper(res);
     }
 }

@@ -1,4 +1,4 @@
-package com.jhj.blogsearch.api.dto;
+package com.jhj.blogsearch.application.search.client.dto;
 
 import java.util.Arrays;
 import lombok.AllArgsConstructor;

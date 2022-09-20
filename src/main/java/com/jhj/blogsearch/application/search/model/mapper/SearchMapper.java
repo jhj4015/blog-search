@@ -4,5 +4,5 @@ import com.jhj.blogsearch.api.dto.SearchDTO;
 
 public interface SearchMapper<T> {
 
-    SearchDTO.Res mapper(T responseDTO);
+    SearchDTO.Res mapper(T response);
 }

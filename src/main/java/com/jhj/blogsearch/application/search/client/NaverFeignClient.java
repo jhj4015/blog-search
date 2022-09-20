@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public interface NaverFeignClient {
 
     @GetMapping(path = "/v1/search/blog", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    NaverDTO getBlogResult(@SpringQueryMap SearchDTO.Req request);
+    NaverDTO.Res getBlogResult(@SpringQueryMap SearchDTO.Req request);
 
     @Slf4j
     @Component

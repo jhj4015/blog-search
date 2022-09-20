@@ -1,12 +1,12 @@
 package com.jhj.blogsearch.api;
 
+import lombok.RequiredArgsConstructor;
+import io.swagger.v3.oas.annotations.Operation;
+import com.jhj.blogsearch.common.ApiResponse;
 import com.jhj.blogsearch.api.dto.SearchDTO;
-import com.jhj.blogsearch.api.dto.SortType;
+import com.jhj.blogsearch.application.search.client.dto.SortType;
 import com.jhj.blogsearch.application.search.BlogSearchService;
 import com.jhj.blogsearch.application.search.model.SearchPage;
-import com.jhj.blogsearch.common.ApiResponse;
-import io.swagger.v3.oas.annotations.Operation;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

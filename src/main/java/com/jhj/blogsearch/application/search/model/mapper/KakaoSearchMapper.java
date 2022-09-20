@@ -5,26 +5,26 @@ import com.jhj.blogsearch.application.search.client.dto.KakaoDTO;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class KakaoSearchMapper implements SearchMapper<KakaoDTO> {
+public class KakaoSearchMapper implements SearchMapper<KakaoDTO.Res> {
 
     @Override
-    public SearchDTO.Res mapper(KakaoDTO kakaoDTO) {
+    public SearchDTO.Res mapper(KakaoDTO.Res res) {
         return SearchDTO.Res.builder()
-                .totalCount(kakaoDTO.getMeta().getTotalCount())
-                .pageableCount(kakaoDTO.getMeta().getPageableCount())
-                .apiName(kakaoDTO.isFallBack() ? "NAVER_BLOG" : "KAKAO-BLOG")
-                .isEnd(kakaoDTO.getMeta().isEnd())
-                .documents(getDocuments(kakaoDTO))
-                .build();
+                            .totalCount(res.getMeta().getTotalCount())
+                            .pageableCount(res.getMeta().getPageableCount())
+                            .apiName(res.isFallBack() ? "NAVER_BLOG" : "KAKAO-BLOG")
+                            .isEnd(res.getMeta().isEnd())
+                            .documents(getDocuments(res))
+                            .build();
     }
 
-    private List<SearchDTO.Res.Document> getDocuments(KakaoDTO kakaoDTO) {
-        return kakaoDTO.getDocuments().stream().map(doc -> SearchDTO.Res.Document.builder()
-                .title(doc.getTitle())
-                .contents(doc.getContents())
-                .url(doc.getUrl())
-                .blogName(doc.getBlogName())
-                .thumbNail(doc.getThumbNail())
-                .dateTime(doc.getDateTime()).build()).collect(Collectors.toList());
-    }
+    private List<SearchDTO.Res.Document> getDocuments(KakaoDTO.Res res) {
+        return res.getDocuments().stream().map(doc -> SearchDTO.Res.Document.builder()
+                            .title(doc.getTitle())
+                            .contents(doc.getContents())
+                            .url(doc.getUrl())
+                            .blogName(doc.getBlogName())
+                            .thumbNail(doc.getThumbNail())
+                            .dateTime(doc.getDateTime()).build()).collect(Collectors.toList());
+                }
 }
