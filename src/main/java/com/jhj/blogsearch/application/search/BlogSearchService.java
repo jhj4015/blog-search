@@ -18,19 +18,20 @@ public class BlogSearchService {
     private final TrendKeywordService trendKeywordService;
 
     public SearchPage searchBlog(SearchDTO.Req request) {
+
         final SearchDTO.Res searchResDTO = searchKakaoBlog(request);
         trendKeywordService.updateCountByKeyword(request.getQuery());
 
         return SearchPage.builder()
-                .apiName(searchResDTO.getApiName())
-                .apiSort(String.valueOf(request.getSort()))
-                .isEnd(searchResDTO.isEnd())
-                .content(searchResDTO.getDocuments())
-                .pageNumber(searchResDTO.getPageableCount())
-                .pageSize(request.getPageSize())
-                .total(searchResDTO.getTotalCount())
-                .build();
-    }
+                        .apiName(searchResDTO.getApiName())
+                        .apiSort(String.valueOf(request.getSort()))
+                        .isEnd(searchResDTO.isEnd())
+                        .content(searchResDTO.getDocuments())
+                        .pageNumber(searchResDTO.getPageableCount())
+                        .pageSize(request.getPageSize())
+                        .total(searchResDTO.getTotalCount())
+                        .build();
+            }
 
     SearchDTO.Res searchKakaoBlog(SearchDTO.Req request) {
         KakaoDTO responseDTO = kakaoFeignClient.getBlogResult(request);

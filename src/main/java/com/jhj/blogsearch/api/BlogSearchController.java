@@ -26,12 +26,9 @@ public class BlogSearchController {
                                                 @RequestParam(defaultValue = "1") int page,
                                                 @RequestParam(defaultValue = "30") int size) {
 
-        if (query.isBlank()) {
-            throw new IllegalArgumentException("검색어를 입력해주세요");
-        }
-
         SearchPage searchPage =
-                blogSearchService.searchBlog(SearchDTO.Req.of(query, SortType.getKakaoSortType(sort), page, size));
+                blogSearchService.searchBlog(
+                        SearchDTO.Req.of(query, SortType.getKakaoSortType(sort), page, size));
         return ApiResponse.success(searchPage);
     }
 
