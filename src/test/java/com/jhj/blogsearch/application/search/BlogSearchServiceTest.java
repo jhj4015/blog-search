@@ -51,4 +51,5 @@ class BlogSearchServiceTest {
         assertEquals(794, searchResDTO.getPageableCount());
         assertEquals("랄라라", searchResDTO.getDocuments().get(1).getBlogName());
     }
+
 }
