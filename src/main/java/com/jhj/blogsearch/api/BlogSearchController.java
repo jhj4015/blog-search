@@ -26,9 +26,7 @@ public class BlogSearchController {
                                                 @RequestParam(defaultValue = "1") int page,
                                                 @RequestParam(defaultValue = "30") int size) {
 
-        SearchPage searchPage =
-                blogSearchService.searchBlog(
-                        SearchDTO.Req.of(query, SortType.getKakaoSortType(sort), page, size));
+        SearchPage searchPage = blogSearchService.searchBlog(SearchDTO.Req.of(query, SortType.getKakaoSortType(sort), page, size));
         return ApiResponse.success(searchPage);
     }
 
