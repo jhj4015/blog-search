@@ -1,7 +1,7 @@
 package com.jhj.blogsearch.application.search.model.mapper;
 
 import com.jhj.blogsearch.api.dto.SearchDTO;
-import com.jhj.blogsearch.application.search.feign.dto.KakaoDTO;
+import com.jhj.blogsearch.application.search.client.dto.KakaoDTO;
 import java.util.List;
 import java.util.stream.Collectors;
 

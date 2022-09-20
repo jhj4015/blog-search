@@ -1,8 +1,8 @@
 package com.jhj.blogsearch.application.search;
 
 import com.jhj.blogsearch.api.dto.SearchDTO;
-import com.jhj.blogsearch.application.search.feign.KakaoFeignClient;
-import com.jhj.blogsearch.application.search.feign.dto.KakaoDTO;
+import com.jhj.blogsearch.application.search.client.KakaoFeignClient;
+import com.jhj.blogsearch.application.search.client.dto.KakaoDTO;
 import com.jhj.blogsearch.application.search.model.SearchPage;
 import com.jhj.blogsearch.application.search.model.mapper.KakaoSearchMapper;
 import com.jhj.blogsearch.application.search.model.mapper.SearchMapper;
@@ -23,7 +23,7 @@ public class BlogSearchService {
 
         return SearchPage.builder()
                 .apiName(searchResDTO.getApiName())
-                .apiSort(request.getSort())
+                .apiSort(String.valueOf(request.getSort()))
                 .isEnd(searchResDTO.isEnd())
                 .content(searchResDTO.getDocuments())
                 .pageNumber(searchResDTO.getPageableCount())

@@ -18,7 +18,8 @@ public class SearchDTO {
     public static class Req {
         @NotNull
         private String query;
-        private String sort;
+        @Builder.Default
+        private SortType sort = SortType.ACCURACY;
         @Min(1)
         private int pageNumber;
         @Min(1)

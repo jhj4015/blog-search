@@ -1,6 +1,7 @@
 package com.jhj.blogsearch.api;
 
 import com.jhj.blogsearch.api.dto.SearchDTO;
+import com.jhj.blogsearch.api.dto.SortType;
 import com.jhj.blogsearch.application.search.BlogSearchService;
 import com.jhj.blogsearch.application.search.model.SearchPage;
 import com.jhj.blogsearch.common.ApiResponse;
@@ -21,7 +22,7 @@ public class BlogSearchController {
     @Operation(summary = "Blog Search API", description = "Blog Search API with OPEN API")
     @GetMapping("/blog")
     public ApiResponse<SearchPage> searchBlog(@RequestParam(name = "query") String query,
-                                                @RequestParam(name = "sort") String sort,
+                                                @RequestParam(name = "sort", defaultValue = "accuracy") String sort,
                                                 @RequestParam(defaultValue = "1") int page,
                                                 @RequestParam(defaultValue = "30") int size) {
 
@@ -29,7 +30,8 @@ public class BlogSearchController {
             throw new IllegalArgumentException("검색어를 입력해주세요");
         }
 
-        SearchPage searchPage = blogSearchService.searchBlog(SearchDTO.Req.of(query, sort, page, size));
+        SearchPage searchPage =
+                blogSearchService.searchBlog(SearchDTO.Req.of(query, SortType.getKakaoSortType(sort), page, size));
         return ApiResponse.success(searchPage);
     }
 

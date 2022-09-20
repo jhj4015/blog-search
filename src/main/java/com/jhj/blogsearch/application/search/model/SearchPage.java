@@ -17,7 +17,7 @@ public class SearchPage extends PageImpl<SearchDTO.Res.Document> {
 
     @Builder
     public SearchPage(String apiName, String apiSort, boolean isEnd,
-                        List<Document> content, int pageNumber, int pageSize, int total) {
+            List<Document> content, int pageNumber, int pageSize, int total) {
         super(content, PageRequest.of(pageNumber, pageSize), total);
         this.apiName = apiName;
         this.apiSort = apiSort;
