@@ -7,7 +7,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableScheduling
 @EnableFeignClients
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.jhj.blogsearch")
 public class BlogSearchApplication {
 
     public static void main(String[] args) {

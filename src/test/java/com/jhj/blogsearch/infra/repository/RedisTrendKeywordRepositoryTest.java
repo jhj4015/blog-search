@@ -3,6 +3,7 @@ package com.jhj.blogsearch.infra.repository;
 import static java.util.stream.Collectors.toList;
 
 import com.jhj.blogsearch.api.dto.TrendKeywordDTO;
+import com.jhj.blogsearch.config.LocalRedisConfig;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;

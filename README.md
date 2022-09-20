@@ -50,7 +50,7 @@ CREATE TABLE TREND_KEYWORD (
 ### Starting
 
    ~~~bash
-> java -jar blog-search-0.0.1-SNAPSHOT.jar
+> java -jar blog-search-0.0.1-SNAPSHOT.jar Pprofile=local
    ~~~
 
 
@@ -85,6 +85,6 @@ CREATE TABLE TREND_KEYWORD (
        3. 캐시값 삭제 룰 24시간
 4. [X] 코드 레벨
     1. [X] 트래픽이 많고, 저장되어 있는 데이터가 많음을 고려
-    2. [ ] 테스트 케이스
+    2. [X] 테스트 케이스
     3. [X] 에러 처리
     4. [X] 멀티 모듈 구성 및 모듈간 의존성 제약
