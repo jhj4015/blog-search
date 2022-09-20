@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Profile;
 import redis.embedded.RedisServer;
 
 @Slf4j
-@Profile("local")
+@Profile({"local", "test"})
 @Configuration
 public class LocalRedisConfig {
 

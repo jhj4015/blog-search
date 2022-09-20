@@ -6,7 +6,6 @@ import static org.mockito.BDDMockito.given;
 import com.jhj.blogsearch.api.dto.SearchDTO;
 import com.jhj.blogsearch.api.dto.SortType;
 import com.jhj.blogsearch.application.search.client.KakaoFeignClient;
-import com.jhj.blogsearch.application.search.client.NaverFeignClient;
 import com.jhj.blogsearch.application.search.client.dto.KakaoDTO;
 import com.jhj.blogsearch.support.DummyDataReader;
 import org.junit.jupiter.api.BeforeEach;
@@ -39,7 +38,7 @@ class BlogSearchServiceTest {
     }
 
     @Test
-    void testKakaoBlogSearchResult() {
+    void shouldGetKakaoBlogResponse() {
         // given
         KakaoDTO kakaoDTO = dummyDataReader.readKakaoDummyResponse();
         given(kakaoFeignClient.getBlogResult(searchReqDTO)).willReturn(kakaoDTO);

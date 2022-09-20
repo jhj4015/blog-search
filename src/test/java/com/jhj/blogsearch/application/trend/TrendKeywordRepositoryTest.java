@@ -33,6 +33,7 @@ class TrendKeywordRepositoryTest {
 
         // when
         List<TrendKeyword> resultList = trendKeywordRepository.findTop10TrendKeywordByOrderByCountDesc();
+
         // then
         Assertions.assertEquals(resultList.get(0).getKeyword(), "hello-moji");
     }
