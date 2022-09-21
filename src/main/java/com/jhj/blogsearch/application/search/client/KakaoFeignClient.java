@@ -1,7 +1,7 @@
 package com.jhj.blogsearch.application.search.client;
 
 import com.jhj.blogsearch.api.dto.SearchDTO;
-import com.jhj.blogsearch.application.search.client.dto.SortType;
+import com.jhj.blogsearch.application.search.model.SortType;
 import com.jhj.blogsearch.application.search.client.dto.KakaoDTO;
 import com.jhj.blogsearch.application.search.client.dto.NaverDTO;
 import com.jhj.blogsearch.application.search.client.dto.SearchDTOTransfer;
@@ -36,7 +36,9 @@ public interface KakaoFeignClient {
         @Override
         public KakaoFeignClient create(Throwable cause) {
             return request -> {
+
                 log.warn("Fallback : KakaoFeignClient.getBlogResult() called", cause);
+
                 SortType naverSortType = SortType.getNaverSortType(String.valueOf(request.getSort()));
                 NaverDTO.Res res = naverFeignClient.getBlogResult(SearchDTO.Req.of(request.getQuery(), naverSortType, request.getPageNumber(), request.getPageSize()));
 

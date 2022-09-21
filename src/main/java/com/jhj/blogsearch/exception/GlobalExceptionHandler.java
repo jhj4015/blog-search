@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
     /**
-     * Controller 요청 파라미터가 없을 경우 발생하는 Exception
+     * 요청 파라미터가 없을 경우 발생하는 Exception
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MissingServletRequestParameterException.class)

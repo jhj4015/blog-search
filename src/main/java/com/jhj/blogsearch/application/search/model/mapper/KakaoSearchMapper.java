@@ -12,7 +12,7 @@ public class KakaoSearchMapper implements SearchMapper<KakaoDTO.Res> {
         return SearchDTO.Res.builder()
                             .totalCount(res.getMeta().getTotalCount())
                             .pageableCount(res.getMeta().getPageableCount())
-                            .apiName(res.isFallBack() ? "NAVER_BLOG" : "KAKAO-BLOG")
+                            .apiName(res.isFallBack() ? "NAVER-BLOG" : "KAKAO-BLOG")
                             .isEnd(res.getMeta().isEnd())
                             .documents(getDocuments(res))
                             .build();
@@ -26,5 +26,5 @@ public class KakaoSearchMapper implements SearchMapper<KakaoDTO.Res> {
                             .blogName(doc.getBlogName())
                             .thumbNail(doc.getThumbNail())
                             .dateTime(doc.getDateTime()).build()).collect(Collectors.toList());
-                }
+    }
 }

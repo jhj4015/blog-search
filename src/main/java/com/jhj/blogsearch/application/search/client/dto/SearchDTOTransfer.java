@@ -27,5 +27,4 @@ public class SearchDTOTransfer {
                                                     .thumbNail(item.getLink())
                                                     .dateTime(item.getPostDate()).build()).collect(Collectors.toList());
     }
-
 }

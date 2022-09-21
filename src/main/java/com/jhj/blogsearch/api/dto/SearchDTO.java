@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import com.jhj.blogsearch.application.search.client.dto.SortType;
+import com.jhj.blogsearch.application.search.model.SortType;
 
 public class SearchDTO {
 

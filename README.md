@@ -23,7 +23,7 @@ https://github.com/jhj4015/blog-search/blob/master/blog-search-0.0.1-SNAPSHOT.ja
 > https://developers.kakao.com/docs/latest/ko/daum-search/dev-guide#search-blog
 
 ### NAVER OPEN API
-https://developers.naver.com/docs/serviceapi/search/blog/blog.md
+> https://developers.naver.com/docs/serviceapi/search/blog/blog.md
 
 ---
 

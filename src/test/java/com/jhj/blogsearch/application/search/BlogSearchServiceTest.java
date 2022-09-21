@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
 
 import com.jhj.blogsearch.api.dto.SearchDTO;
-import com.jhj.blogsearch.application.search.client.dto.SortType;
 import com.jhj.blogsearch.application.search.client.KakaoFeignClient;
 import com.jhj.blogsearch.application.search.client.dto.KakaoDTO;
+import com.jhj.blogsearch.application.search.model.SortType;
 import com.jhj.blogsearch.support.DummyDataReader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -25,9 +25,7 @@ public class OpenApiConfig {
                 .version(appVersion)
                 .description("Blog Search Service")
                 .termsOfService(termsOfService)
-                .contact(new Contact()
-                        .name(name)
-                        .email(email));
+                .contact(new Contact().name(name).email(email));
 
         return new OpenAPI()
                 .components(new Components())
