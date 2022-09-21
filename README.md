@@ -2,6 +2,10 @@ Blog Search Service
 ===================================
 > Spring Boot 기반으로 OPEN API를 활용한 블로그 검색 서비스 입니다.
 
+#### Download jar file
+https://github.com/jhj4015/blog-search/blob/master/blog-search-0.0.1-SNAPSHOT.jar
+
+
 ## Prerequisites
 * JAVA 11
 * Spring Boot 2.7.3
@@ -19,7 +23,7 @@ Blog Search Service
 > https://developers.kakao.com/docs/latest/ko/daum-search/dev-guide#search-blog
 
 ### NAVER OPEN API
-> https://developers.naver.com/docs/serviceapi/search/blog/blog.md
+https://developers.naver.com/docs/serviceapi/search/blog/blog.md
 
 ---
 
